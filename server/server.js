@@ -38,7 +38,7 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
 		res.status(200).json({
 			status: "success",
 			data: {
-				restaurants: results.rows[0],
+				restaurant: results.rows[0],
 			},
 		});
 	} catch (err) {
