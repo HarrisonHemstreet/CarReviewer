@@ -1,6 +1,28 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
+import RestaurantFinder from "../apis/RestaurantFinder";
+import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const AddRestaurant = () => {
+	const { addRestaurants } = useContext(RestaurantsContext);
+	const [name,setName] = useState("");
+	const [location, setLocation] = useState("");
+	const [priceRange, setPriceRange] = useState("");
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await RestaurantFinder.post("/", {
+				name,
+				location,
+				price_range: priceRange,
+			});
+			addRestaurants(response.data.data.restaurant);
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	
 	return (
 		// {/* <div className="container"> */}
 		// 	<div className="row">
@@ -8,13 +30,13 @@ const AddRestaurant = () => {
 			<form action="">
 				<div className="form-row">
 					<div className="col">
-						<input type="text" className="form-control" placeholder="name"/>
+						<input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="name"/>
 					</div>
 					<div className="col">
-						<input className="form-control" type="text" placeholder="location" />
+						<input value={location} onChange={e => setLocation(e.target.value)} className="form-control" type="text" placeholder="location" />
 					</div>
 					<div className="col">
-						<select className="form-control custom-select my-1 mr-sm-2">
+						<select value={priceRange} onChange={e => setPriceRange(e.target.value)}className="form-control custom-select my-1 mr-sm-2">
 							<option disabled>Price Range</option>
 							<option value="1">$</option>
 							<option value="2">$$</option>
@@ -23,7 +45,7 @@ const AddRestaurant = () => {
 							<option value="5">$$$$$</option>
 						</select>
 					</div>
-					<button className="col btn btn-primary">Add</button>
+					<button onClick={handleSubmit} className="col btn btn-primary">Add</button>
 				</div>
 			</form>
 		</div>
