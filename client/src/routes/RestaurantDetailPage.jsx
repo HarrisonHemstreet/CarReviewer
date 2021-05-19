@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import RestaurantFinder from "../apis/RestaurantFinder";
-import StarRating from "../components/StarRating";
+// import StarRating from "../components/StarRating";
 import Reviews from "../components/Reviews";
 import AddReview from "../components/AddReview";
 
@@ -15,12 +15,8 @@ const RestaurantDetailPage = () => {
 			try {
 
 			const response = await RestaurantFinder.get(`/${id}`);
-			// console.log(response.data.data)
 			const restaurantInfo = response.data.data;
-				console.log(restaurantInfo.reviews.map(review => {
-					console.log(review.name, "CHECK IT!");
-				}), "oh, hellow there");
-			// const reviews = response.data.data.reviews;
+
 			setSelectedRestaurant(restaurantInfo);
 
 			} catch (err) {
@@ -31,7 +27,7 @@ const RestaurantDetailPage = () => {
 	}, []);
 	return (
 		<div>
-			{selectedRestaurant && (
+			{selectedRestaurant && selectedRestaurant.restaurant && (
 				<>
 					<h1 className="text-center display-1">{selectedRestaurant.restaurant.name}</h1>
 					<div className="mt-3">
