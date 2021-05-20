@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RestaurantFinder from "../apis/RestaurantFinder";
+import CarFinder from "../apis/CarFinder";
 import { useLocation, useParams, useHistory } from "react-router-dom";
 
 const AddReview = () => {
@@ -15,7 +15,7 @@ const AddReview = () => {
 		console.log("in here");
 		e.preventDefault();
 		try {
-			await RestaurantFinder.post(`/${id}/addReview`, {
+			await CarFinder.post(`/${id}/addReview`, {
 				name,
 				review: reviewText,
 				rating,

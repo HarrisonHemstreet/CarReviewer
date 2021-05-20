@@ -1,22 +1,22 @@
 import React, {useState, useContext} from 'react';
-import RestaurantFinder from "../apis/RestaurantFinder";
-import { RestaurantsContext } from "../context/RestaurantsContext";
+import CarFinder from "../apis/CarFinder";
+import { CarsContext } from "../context/CarsContext";
 
-const AddRestaurant = () => {
-	const { addRestaurants } = useContext(RestaurantsContext);
-	const [name,setName] = useState("");
-	const [location, setLocation] = useState("");
+const AddCar = () => {
+	const { addCars } = useContext(CarsContext);
+	const [make,setMake] = useState("");
+	const [model, setModel] = useState("");
 	const [priceRange, setPriceRange] = useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await RestaurantFinder.post("/", {
-				name,
-				location,
+			const response = await CarFinder.post("/", {
+				make,
+				model,
 				price_range: priceRange,
 			});
-			addRestaurants(response.data.data.restaurant);
+			addCars(response.data.data.car);
 			console.log(response);
 		} catch (err) {
 			console.log(err);
@@ -30,10 +30,10 @@ const AddRestaurant = () => {
 			<form action="">
 				<div className="form-row">
 					<div className="col">
-						<input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="name"/>
+						<input value={make} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="Make"/>
 					</div>
 					<div className="col">
-						<input value={location} onChange={e => setLocation(e.target.value)} className="form-control" type="text" placeholder="location" />
+						<input value={model} onChange={e => setLocation(e.target.value)} className="form-control" type="text" placeholder="Model" />
 					</div>
 					<div className="col">
 						<select value={priceRange} onChange={e => setPriceRange(e.target.value)}className="form-control custom-select my-1 mr-sm-2">
@@ -55,4 +55,4 @@ const AddRestaurant = () => {
 	)
 }
 
-export default AddRestaurant;
+export default AddCar;
