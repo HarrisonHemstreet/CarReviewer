@@ -11,18 +11,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Get all restaurants
+// Get all cars
 app.get("/api/v1/cars", async (req, res) => {
 	try {
 
-		// const results = await db.query("SELECT * FROM restaurants");
+		// const results = await db.query("SELECT * FROM cars");
 		const carsRatingsData = await db.query("SELECT * FROM cars LEFT JOIN (SELECT car_id, COUNT(*), TRUNC(AVG(rating),1) AS average_rating FROM reviews GROUP BY car_id) reviews ON cars.id = reviews.car_id;");
+		
+		console.log(carsRatingsData)
 
 		res.status(200).json({
 			status: "success",
-			results: carRatingsData.rows.length,
+			results: carsRatingsData.rows.length,
 			data: {
-				restaurants: carRatingsData.rows,
+				cars: carsRatingsData.rows,
 			},
 		});
 	} catch (err) {
@@ -37,7 +39,7 @@ app.get("/api/v1/cars/:id", async (req, res) => {
 	try {
 
 		const car = await db.query(`SELECT * FROM cars LEFT JOIN (SELECT car_id, COUNT(*), TRUNC(AVG(rating),1) AS average_rating FROM reviews GROUP BY car_id) reviews ON cars.id = reviews.car_id WHERE id = $1`, [req.params.id]);
-		const reviews = await db.query(`SELECT * FROM reviews WHERE restaurant_id = $1`, [req.params.id]);
+		const reviews = await db.query(`SELECT * FROM reviews WHERE car_id = $1`, [req.params.id]);
 
 		res.status(200).json({
 			status: "success",

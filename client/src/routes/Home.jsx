@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from "../components/Header";
-import AddRestaurant from "../components/AddRestaurant";
-import RestaurantList from "../components/RestaurantList";
+import AddCar from "../components/AddCar";
+import CarList from "../components/CarList";
 
 const Home = () => {
 	return (
 		<div>
 			<Header />
-			<AddRestaurant />
-			<RestaurantList />
+			<AddCar />
+			<CarList />
 		</div>
 	)
 }
