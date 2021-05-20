@@ -32,7 +32,7 @@ app.get("/api/v1/cars", async (req, res) => {
 	}
 });
 
-// get a restaurant
+// get a car
 app.get("/api/v1/cars/:id", async (req, res) => {
 	console.log(req.params.id);	
 
@@ -53,7 +53,7 @@ app.get("/api/v1/cars/:id", async (req, res) => {
 	}
 });
 
-// Create a restaurant
+// Create a car
 app.post("/api/v1/cars", async (req, res) => {
 	console.log(req);
 	
@@ -71,7 +71,7 @@ app.post("/api/v1/cars", async (req, res) => {
 	}
 });
 
-// update restaurants
+// update cars
 app.put("/api/v1/cars/:id", async (req, res) => {
 	try {
 		const results = await db.query("UPDATE cars SET make = $1, model = $2, price_range = $3 WHERE id = $4 RETURNING *", 
@@ -89,7 +89,7 @@ app.put("/api/v1/cars/:id", async (req, res) => {
 	console.log(req.body);
 });
 
-// delete a restaurant
+// delete a car
 app.delete("/api/v1/cars/:id", async (req, res) => {
 	try {
 		const results = db.query("DELETE FROM cars WHERE id = $1", [req.params.id]);
