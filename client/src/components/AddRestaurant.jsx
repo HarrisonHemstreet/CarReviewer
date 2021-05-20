@@ -30,10 +30,10 @@ const AddRestaurant = () => {
 			<form action="">
 				<div className="form-row">
 					<div className="col">
-						<input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="name"/>
+						<input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" placeholder="Make"/>
 					</div>
 					<div className="col">
-						<input value={location} onChange={e => setLocation(e.target.value)} className="form-control" type="text" placeholder="location" />
+						<input value={location} onChange={e => setLocation(e.target.value)} className="form-control" type="text" placeholder="Model" />
 					</div>
 					<div className="col">
 						<select value={priceRange} onChange={e => setPriceRange(e.target.value)}className="form-control custom-select my-1 mr-sm-2">
