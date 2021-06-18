@@ -1,4 +1,5 @@
 import React, {useEffect, useContext} from 'react';
+import "./CarList.css";
 import CarFinder from "../apis/CarFinder";
 import { CarsContext } from "../context/CarsContext";
 import { useHistory } from "react-router-dom";
@@ -55,7 +56,7 @@ const CarList = (props) => {
 
 	return (
 		<div className="list-group">
-			<table className="table table-hover table-dark">
+			<table className="table table-hover table-dark table-striped">
 				<thead>
 			    <tr className="bg-primary">
 			      <th scope="col">Make</th>
@@ -82,7 +83,7 @@ const CarList = (props) => {
 					  		    </td>
 					  		</tr>
 					  )
-				  })};
+				  })}
 			  </tbody>
 			</table >	
 		</div>

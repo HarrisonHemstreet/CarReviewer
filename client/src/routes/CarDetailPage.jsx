@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import "./CarDetailPage.css";
 import { useParams } from "react-router-dom";
 import { CarsContext } from "../context/CarsContext";
 import CarFinder from "../apis/CarFinder";
@@ -28,9 +29,9 @@ const CarDetailPage = () => {
 		fetchData();
 	}, []);
 	return (
-		<div>
+		<div className="containerCarDetail">
 			{selectedCar && selectedCar.car && (
-				<>
+				<div className="">
 					<h1 className="text-center display-1">{selectedCar.car.name}</h1>
 					<div className="text-center">
 						<StarRating rating={selectedCar.car.average_rating} />
@@ -42,7 +43,7 @@ const CarDetailPage = () => {
 						<Reviews reviews={selectedCar.reviews}/>
 					</div>
 					<AddReview />
-				</>
+				</div>
 			)}
 		</div>
 	)

@@ -4,10 +4,13 @@ import Home from "./routes/Home";
 import UpdatePage from "./routes/UpdatePage";
 import CarDetailPage from "./routes/CarDetailPage";
 import {CarsContextProvider} from "./context/CarsContext";
+import './App.css';
 
 const App = () => {
   return (
       <CarsContextProvider>
+          <div className="background-eggshell">
+                <h1>Car Reviewer</h1>
             <div className="container">
                 <Router>
                     <Switch> 
@@ -17,6 +20,7 @@ const App = () => {
                     </Switch> 
                 </Router>
             </div>
+          </div>
       </CarsContextProvider>
       );
 };
